@@ -35,11 +35,11 @@ export default function ServiceCard({ name, status, health, cpu, memory, uptime,
           <span>Uptime <span style={{color:'#22c55e', fontWeight:'bold'}}>{uptime}%</span></span>
           <span>Downtime <span style={{color:'#ef4444', fontWeight:'bold'}}>{downtime}%</span></span>
         </div>
-        <div className="controls">
+        {/* <div className="controls">
           {controls.map(ctrl => (
             <button key={ctrl}>{ctrl}</button>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
