@@ -70,7 +70,8 @@ export default function Sidebar() {
       </div>
 
       {/* Environment Section */}
-      <div className="environment-section">
+      {/* We can include thi in the header */}
+      {/* <div className="environment-section">
         <div className="section-header">
           <span className="section-title">Environment</span>
         </div>
@@ -84,7 +85,7 @@ export default function Sidebar() {
             <option value="Demo" className="env-demo">Demo</option>
           </select>
         </div>
-      </div>
+      </div> */}
 
       {/* Services Filter Section */}
       <div className="services-section">
@@ -96,21 +97,21 @@ export default function Sidebar() {
             className={getServiceFilterClass('All')}
             onClick={() => handleServiceFilterClick('All')}
           >
-            <span>All</span>
+            <span className="filter-text">All</span>
             <span className="filter-count">4</span>
           </div>
           <div 
             className={getServiceFilterClass('Running')}
             onClick={() => handleServiceFilterClick('Running')}
           >
-            <span>Running</span>
+            <span className="filter-text">Running</span>
             <span className="filter-count">2</span>
           </div>
           <div 
             className={getServiceFilterClass('Stopped')}
             onClick={() => handleServiceFilterClick('Stopped')}
           >
-            <span>Stopped</span>
+            <span className="filter-text">Stopped</span>
             <span className="filter-count">2</span>
           </div>
         </div>
@@ -119,7 +120,7 @@ export default function Sidebar() {
       {/* Bottom Section */}
       <div className="bottom-section">
         {/* Theme Toggle */}
-        <div className="theme-toggle">
+        {/* <div className="theme-toggle">
           <div className="toggle-info">
             <span className="toggle-text">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
           </div>
@@ -131,7 +132,7 @@ export default function Sidebar() {
             />
             <span className="toggle-slider"></span>
           </label>
-        </div>
+        </div> */}
 
         {/* Close Button */}
         <div className="close-button-container">

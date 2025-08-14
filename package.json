@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/postcss": "^4.1.11",
+    "axios": "^1.11.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
@@ -19,6 +23,9 @@
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.7.0",
+<<<<<<< HEAD
+    "autoprefixer": "^10.4.21",
+=======
 =======
     "@tailwindcss/postcss": "^4.1.11",
     "@types/react": "^19.1.9",
@@ -26,14 +33,22 @@
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
 >>>>>>> e3d8b2d (Initial commit with PostCSS and Tailwind config fixes)
+>>>>>>> 88dbbf918d972a3443023ce9d9fbbe742dba1371
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
 <<<<<<< HEAD
+    "postcss": "^8.5.6",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.1.2"
+=======
+<<<<<<< HEAD
 =======
     "tailwindcss": "^4.1.11",
 >>>>>>> e3d8b2d (Initial commit with PostCSS and Tailwind config fixes)
     "vite": "^7.1.0"
+>>>>>>> 88dbbf918d972a3443023ce9d9fbbe742dba1371
   }
 }
