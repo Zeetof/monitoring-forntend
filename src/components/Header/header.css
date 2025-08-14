@@ -53,6 +53,9 @@
 .topbar button.refresh {
   background: #2563eb;
 }
+.topbar button.logout-btn {
+  background: #dc2626;
+}
 .topbar button:hover {
   background: #1e293b;
 }

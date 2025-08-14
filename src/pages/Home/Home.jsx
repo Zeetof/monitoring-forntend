@@ -1,60 +1,112 @@
-import ServiceCard from "../../components/ServiceCard";
+import React from "react";
 import Sidebar from "../../components/Sidebar";
 import LogsPanel from "../../components/LogsPanel";
 import UptimeChart from "../../components/UptimeChart";
 import ErrorHistory from "../../components/ErrorHistory";
+import ServiceCard from "../../components/ServiceCard";
+import Header from "../../components/Header/Header";
 
 import "./home.css";
-import Header from "../../components/Header/Header";
 
 const Home = () => {
   return (
     <main className="main-content">
       <Sidebar />
-
       <div className="home-main-container">
         <Header />
         <div className="dashboard-grid">
           <div className="services-grid">
             <ServiceCard
+              id={1}
               name="pm-server"
+              environment="PROD"
               status="Running"
-              health="Healthy"
+              healthEndpoint="https://api.systemspecsg.com/services/pm-server/management/health"
               cpu={77}
               memory={62}
               uptime={100}
-              downtime={0}
               controls={["Start", "Stop"]}
+              metrics={{
+                up: 1440,
+                down: 0,
+                errors: 2,
+                total: 1440,
+                averageTimeMs: "124.5ms"
+              }}
             />
             <ServiceCard
+              id={2}
               name="database"
+              environment="PROD"
               status="Stopped"
-              health="Unhealthy"
+              healthEndpoint="https://api.systemspecsg.com/services/database/management/health"
               cpu={32}
               memory={64}
               uptime={97}
-              downtime={3}
               controls={["Start", "Restart"]}
+              metrics={{
+                up: 1395,
+                down: 45,
+                errors: 12,
+                total: 1440,
+                averageTimeMs: "87.2ms"
+              }}
             />
             <ServiceCard
+              id={3}
               name="cache"
+              environment="PROD"
               status="Running"
-              health="Healthy"
+              healthEndpoint="https://api.systemspecsg.com/services/cache/management/health"
               cpu={63}
               memory={70}
               uptime={99}
-              downtime={1}
               controls={["Start", "Stop"]}
+              metrics={{
+                up: 1425,
+                down: 15,
+                errors: 5,
+                total: 1440,
+                averageTimeMs: "45.8ms"
+              }}
             />
             <ServiceCard
+              id={4}
               name="worker"
+              environment="PROD"
               status="Stopped"
-              health="Stopped"
+              healthEndpoint="https://api.systemspecsg.com/services/worker/management/health"
               cpu={99}
               memory={42}
               uptime={80}
-              downtime={20}
               controls={["Start"]}
+              metrics={{
+                up: 1152,
+                down: 288,
+                errors: 45,
+                total: 1440,
+                averageTimeMs: "216.8ms"
+              }}
+            />
+            <ServiceCard
+              id={5}
+              name="Account Core Service"
+              environment="QA"
+              healthEndpoint="https://api-gateway-qa.systemspecsg.com/services/account-core-service/management/health"
+              status="Running"
+              health="Healthy"
+              cpu={85}
+              memory={75}
+              uptime={100}
+              downtime={0}
+              controls={["Start", "Stop"]}
+              metrics={{
+                up: 144,
+                down: 0,
+                errors: 0,
+                total: 144,
+                averageTimeMs: "217.01ms"
+              }}
             />
           </div>
           <div className="right-panel">

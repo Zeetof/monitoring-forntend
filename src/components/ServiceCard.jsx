@@ -1,46 +1,113 @@
 import React from "react";
+import './ServiceCard.css';
 
-export default function ServiceCard({ name, status, health, cpu, memory, uptime, downtime, controls }) {
-  let statusClass = "status ";
-  if (status === "Running") statusClass += "healthy";
-  else if (status === "Stopped") statusClass += "stopped";
-  else statusClass += "unhealthy";
-  let healthClass = "status ";
-  if (health === "Healthy") healthClass += "healthy";
-  else healthClass += "unhealthy";
+export default function ServiceCard({ name, environment, healthEndpoint, status, uptime, controls, metrics }) {
+  
+  // Function to determine if the service name should be white
+  const shouldUseWhiteColor = (serviceName) => {
+    const whiteColorServices = ['database name', 'pm-server', 'cache', 'worker', 'account core service', 'dashboard'];
+    return whiteColorServices.includes(serviceName.toLowerCase());
+  };
 
-  // Side bar color
-  let barColor = '#22c55e'; // green
-  if (status === 'Stopped') barColor = '#f59e42';
-  if (status === 'Stopped' && health === 'Unhealthy') barColor = '#ef4444';
-  if (status === 'Stopped' && health === 'Stopped') barColor = '#f59e42';
-  if (status === 'Running' && health === 'Unhealthy') barColor = '#ef4444';
-  if (status === 'Stopped' && health === 'Healthy') barColor = '#f59e42';
-  if (status === 'Running' && health === 'Stopped') barColor = '#f59e42';
+  // Determine status color class
+  let statusColorClass = 'default';
+  if (status === "Running") statusColorClass = 'running';
+  else if (status === "Stopped") statusColorClass = 'stopped';
+
+  // Determine title class
+  const titleClass = `service-card-title ${shouldUseWhiteColor(name) ? name.toLowerCase().replace(/\s+/g, '-') : ''}`;
 
   return (
-    <div className="service-card" style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch' }}>
-      <div style={{ width: 8, borderRadius: 8, background: barColor, marginRight: 16, minHeight: '100%' }}></div>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <div className="service-title">{name}</div>
-        <div className="status-row">
-          <span className={statusClass}>{status}</span>
-          {health && <span className={healthClass}>{health}</span>}
+    <div className="service-card">
+      <div className="service-card-header">
+        <div className="service-card-title-container">
+          <div className={`service-card-status-indicator ${statusColorClass}`}></div>
+          <h3 className={titleClass}>
+            {name}
+          </h3>
         </div>
-        <div className="progress-label">CPU <span>{cpu} %</span></div>
-        <div className="progress-bar"><div className="progress" style={{ width: `${cpu}%` }}></div></div>
-        <div className="progress-label">Memory <span>{memory} %</span></div>
-        <div className="progress-bar"><div className="progress" style={{ width: `${memory}%` }}></div></div>
-        <div className="progress-label">
-          <span>Uptime <span style={{color:'#22c55e', fontWeight:'bold'}}>{uptime}%</span></span>
-          <span>Downtime <span style={{color:'#ef4444', fontWeight:'bold'}}>{downtime}%</span></span>
-        </div>
-        {/* <div className="controls">
-          {controls.map(ctrl => (
-            <button key={ctrl}>{ctrl}</button>
-          ))}
-        </div> */}
+        {environment && (
+          <span className="service-card-environment">
+            {environment}
+          </span>
+        )}
       </div>
+
+      <div className="service-card-url">
+        <p>
+          {healthEndpoint || "https://api.systemspecsg.com/services/" + name.toLowerCase().replace(/\s+/g, '-') + "/management/health"}
+        </p>
+      </div>
+
+      <div className="service-card-stats">
+        <div className="service-card-uptime-container">
+          <span className="service-card-uptime-value">
+            {uptime}% Uptime
+          </span>
+          <span className="service-card-uptime-label">
+            API
+          </span>
+        </div>
+        <div className="service-card-progress-bar-container">
+          <div className="service-card-progress-bar" style={{ width: `${uptime}%` }}></div>
+        </div>
+
+        <div className="service-card-stats-grid">
+          <div className="service-card-stat-item">
+            <div className="service-card-stat-value up">
+              {metrics?.up || 0}
+            </div>
+            <div className="service-card-stat-label">
+              Up
+            </div>
+          </div>
+          <div className="service-card-stat-item">
+            <div className="service-card-stat-value down">
+              {metrics?.down || 0}
+            </div>
+            <div className="service-card-stat-label">
+              Down
+            </div>
+          </div>
+          {/* <div className="service-card-stat-item">
+            <div className="service-card-stat-value errors">
+              {metrics?.errors || 0}
+            </div>
+            <div className="service-card-stat-label">
+              Errors
+            </div>
+          </div> */}
+          <div className="service-card-stat-item">
+            <div className="service-card-stat-value total">
+              {metrics?.total || 0}
+            </div>
+            <div className="service-card-stat-label">
+              Total
+            </div>
+          </div>
+          <div className="service-card-stat-item">
+            <div className="service-card-stat-value avg-time">
+              {metrics?.averageTimeMs || 'N/A'}
+            </div>
+            <div className="service-card-stat-label">
+              Avg Time
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {controls && controls.length > 0 && (
+        <div className="service-card-controls">
+          {controls.map((ctrl) => (
+            <button
+              key={ctrl}
+              className="service-card-control-button"
+            >
+              {ctrl}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

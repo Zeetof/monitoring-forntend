@@ -484,21 +484,173 @@ body.light-mode .topbar button:hover {
 .service-card {
   background: var(--card-bg);
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.2s, transform 0.2s;
+  gap: 12px;
 }
-.service-card:hover {
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
-  transform: translateY(-2px) scale(1.01);
+
+.service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
+
+.service-icon {
+  font-size: 1.5rem;
+}
+
+.service-info {
+  flex: 1;
+}
+
 .service-card .service-title {
   font-weight: bold;
   font-size: 1.1rem;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.service-card .service-environment {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.status-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-card .status {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #fff;
+  background: #22c55e;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.service-card .status.stopped {
+  background: #f59e42;
+}
+
+.service-card .status.unhealthy {
+  background: #ef4444;
+}
+
+.service-card .status.healthy {
+  background: #22c55e;
+}
+
+.service-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.metric-icon {
+  font-size: 1rem;
+}
+
+.metric-label {
+  flex: 1;
+  color: var(--text-muted);
+}
+
+.metric-value {
+  font-weight: 500;
+}
+
+.metric-bar {
+  width: 100%;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+body.light-mode .metric-bar {
+  background: #e2e8f0;
+}
+
+.metric-progress {
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.4s;
+}
+
+.service-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 6px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.detail-icon {
+  font-size: 0.9rem;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.service-card .controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.service-card .controls button {
+  flex: 1;
+  background: #374151;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.service-card .controls button:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.light-mode .service-card .controls button {
+  background: #64748b;
+  color: #ffffff;
 }
 .service-card .status-row {
   display: flex;
@@ -579,11 +731,6 @@ body.light-mode .service-card .controls button {
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.panel:hover {
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
-  transform: translateY(-2px) scale(1.01);
 }
 .panel .panel-title {
   font-weight: bold;
