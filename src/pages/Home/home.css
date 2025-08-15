@@ -1,0 +1,25 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  /* gap: 2em; */
+}
+
+.home-main-container {
+  padding: 1em;
+  flex: 1;
+  /* outline: 1px solid red; */
+}
+
+.dashboard-grid {
+  /* outline: 1px solid red; */
+  width: 100%;
+}
+
+.services-grid {
+  /* outline: 1px solid red; */
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}

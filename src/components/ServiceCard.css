@@ -1,0 +1,248 @@
+.service-card {
+  font-family: sans-serif;
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  margin: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  background: #222a36;
+  padding: 0.5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+/* heights are synchronized via JS for specific services */
+
+.service-card-header {
+  padding: 6px;
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-card-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.service-card-status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.service-card-status-indicator.running {
+  background-color: #2ecc71;
+}
+
+.service-card-status-indicator.stopped {
+  background-color: #95a5a6;
+}
+
+.service-card-status-indicator.default {
+  background-color: #e74c3c;
+}
+
+.service-card-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
+}
+
+.service-card-title.database-name,
+.service-card-title.pm-server,
+.service-card-title.cache,
+.service-card-title.worker,
+.service-card-title.account-core-service,
+.service-card-title.dashboard {
+  color: #fff;
+}
+
+.service-card-environment {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+}
+
+.service-card-url {
+  padding: 6px;
+  color: #d12a2aff;
+  margin: 0;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.service-card-url p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-card-stats {
+  padding: 6px;
+  border-top: none;
+  flex: 1 1 auto;
+}
+
+.service-card-uptime-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.service-card-uptime-value {
+  color: #27ae60;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.service-card-uptime-label {
+  color: #999;
+  font-size: 11px;
+}
+
+.service-card-progress-bar-container {
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.service-card-progress-bar {
+  height: 100%;
+  background-color: #2ecc71;
+  border-radius: 2px;
+}
+
+.service-card-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 8px;
+  margin-top: 6px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.service-card-stat-item {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: 10px;
+  padding: 4px 0;
+  transition: transform 0.18s ease;
+  position: relative;
+}
+
+.service-card-stat-item:hover {
+  transform: translateY(-1px);
+}
+
+.service-card-stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 6px;
+}
+
+.service-card-stat-value::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  background: rgba(255,255,255,0.7);
+}
+
+.service-card-stat-value.up,
+.service-card-stat-value.down,
+.service-card-stat-value.errors,
+.service-card-stat-value.total,
+.service-card-stat-value.avg-time {
+  color: inherit;
+}
+
+.service-card-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  text-shadow: 0 0 0.5px rgba(0,0,0,0.3);
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Stat variants */
+.service-card-stat-item.up {}
+
+.service-card-stat-item.down {}
+
+.service-card-stat-item.total {}
+
+.service-card-stat-item.avg-time {}
+
+/* Soft glow accents */
+/* remove previous glow accents */
+.service-card-stat-item.up::after,
+.service-card-stat-item.down::after,
+.service-card-stat-item.total::after,
+.service-card-stat-item.avg-time::after { content: none; }
+
+/* Variant accents applied to pill only */
+.service-card-stat-item.up .service-card-stat-value { color: #27ae60; }
+.service-card-stat-item.up .service-card-stat-value::before { background: #27ae60; }
+
+.service-card-stat-item.down .service-card-stat-value { color: #e74c3c; }
+.service-card-stat-item.down .service-card-stat-value::before { background: #e74c3c; }
+
+.service-card-stat-item.total .service-card-stat-value { color: #3498db; }
+.service-card-stat-item.total .service-card-stat-value::before { background: #3498db; }
+
+.service-card-stat-item.avg-time .service-card-stat-value { color: #f1c40f; }
+.service-card-stat-item.avg-time .service-card-stat-value::before { background: #f1c40f; }
+
+.service-card-controls {
+  padding: 10px;
+  border-top: none;
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.service-card-control-button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
